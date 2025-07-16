@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f4f8;
+      padding: 50px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2e7d32;
+      margin-bottom: 30px;
+    }
+
+    .card-container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .card {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      width: 250px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .card h2 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 24px;
+      font-weight: bold;
+      color: #0288d1;
+    }
+  </style>
+</head>
+<body>
+  <h1>📈 Book Management Dashboard</h1>
+
+  <div class="card-container">
+    <div class="card">
+      <h2>Total Books</h2>
+      <p th:text="${bookCount}">0</p>
+    </div>
+    <div class="card">
+      <h2>Total Users</h2>
+      <p th:text="${userCount}">0</p>
+    </div>
+    <div class="card">
+      <h2>Total Quantity</h2>
+      <p th:text="${totalQuantity}">0</p>
+    </div>
+    <div class="card">
+      <h2>Total Stock Value</h2>
+      <p th:text="'₹' + ${totalValue}">₹0</p>
+    </div>
+  </div>
+</body>
+</html>

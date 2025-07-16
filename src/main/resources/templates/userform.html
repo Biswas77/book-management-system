@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout}">
+<main>
+  <style>
+    .form-container {
+      max-width: 500px;
+      margin: auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #43a047;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #2e7d32;
+    }
+  </style>
+
+  <div class="form-container">
+    <h2>Add New User</h2>
+
+    <form th:action="@{/users/save}" th:object="${user}" method="post">
+      <label>Username:</label>
+      <input type="text" th:field="*{username}" required />
+
+      <label>Password:</label>
+      <input type="password" th:field="*{password}" required />
+
+      <label>Email:</label>
+      <input type="email" th:field="*{email}" required />
+
+      <label>Role:</label>
+      <input type="text" th:field="*{role}" required />
+
+      <button type="submit">Save User</button>
+    </form>
+  </div>
+</main>
+</html>

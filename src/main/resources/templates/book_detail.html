@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout}">
+<main>
+  <style>
+    .detail-container {
+      display: flex;
+      background-color: white;
+      max-width: 900px;
+      margin: auto;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin-top: 40px;
+    }
+
+    .book-image {
+      flex: 1;
+      max-width: 300px;
+      margin-right: 30px;
+    }
+
+    .book-image img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .book-info {
+      flex: 2;
+    }
+
+    .book-info h1 {
+      margin-bottom: 10px;
+      color: #2e7d32;
+    }
+
+    .book-info p {
+      font-size: 16px;
+      margin: 8px 0;
+      color: #333;
+    }
+
+    .back-link {
+      margin-top: 25px;
+    }
+
+    .back-link a {
+      text-decoration: none;
+      color: white;
+      background-color: #4caf50;
+      padding: 10px 20px;
+      border-radius: 6px;
+    }
+  </style>
+
+  <div class="detail-container">
+    <div class="book-image">
+      <img th:src="${book.imagelink}" alt="Book Image"
+           onerror="this.src='https://via.placeholder.com/300'" />
+    </div>
+
+    <div class="book-info">
+      <h1 th:text="${book.title}">Book Title</h1>
+      <p><strong>Author:</strong> <span th:text="${book.author}">Author Name</span></p>
+      <p><strong>Genre:</strong> <span th:text="${book.genre}">Genre</span></p>
+      <p><strong>Publisher:</strong> <span th:text="${book.publisher}">Publisher</span></p>
+      <p><strong>Published Date:</strong> <span th:text="${book.date}">Date</span></p>
+      <p><strong>Quantity:</strong> <span th:text="${book.quantity}">0</span></p>
+      <p><strong>Price:</strong> ₹<span th:text="${book.price}">0.00</span></p>
+      <p><strong>Added By User:</strong> <span th:text="${book.user?.username}">Unknown</span></p>
+
+      <div class="back-link">
+        <a th:href="@{/save}">⬅ Back to Book List</a>
+      </div>
+    </div>
+  </div>
+</main>
+</html>

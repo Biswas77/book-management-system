@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Search Books</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #e8f5e9;
+      padding: 40px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2e7d32;
+    }
+
+    .search-form {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      width: 300px;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin-left: 10px;
+      background-color: #388e3c;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #ccc;
+    }
+
+    th {
+      background-color: #66bb6a;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔍 Search Books</h1>
+
+  <form th:action="@{/search}" method="get" class="search-form">
+    <input type="text" name="keyword" placeholder="Search by title, author or genre" />
+    <button type="submit">Search</button>
+  </form>
+
+  <table th:if="${books != null}">
+    <thead>
+      <tr>
+        <th>Title</th><th>Author</th><th>Genre</th><th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="book : ${books}">
+        <td th:text="${book.title}"></td>
+        <td th:text="${book.author}"></td>
+        <td th:text="${book.genre}"></td>
+        <td th:text="${book.price}"></td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

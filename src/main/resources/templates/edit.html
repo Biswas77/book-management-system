@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout}">
+<main>
+  <style>
+    .form-container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    form label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    form input, form select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #1976d2;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0d47a1;
+    }
+  </style>
+
+  <div class="form-container">
+    <h2>Edit Book</h2>
+
+    <form th:action="@{/updateBook}" th:object="${book}" method="post">
+      <input type="hidden" th:field="*{id}" />
+
+      <label>Title:</label>
+      <input type="text" th:field="*{title}" />
+
+      <label>Author:</label>
+      <input type="text" th:field="*{author}" />
+
+      <label>Genre:</label>
+      <input type="text" th:field="*{genre}" />
+
+      <label>Date:</label>
+      <input type="date" th:field="*{date}" />
+
+      <label>Publisher:</label>
+      <input type="text" th:field="*{publisher}" />
+
+      <label>Quantity:</label>
+      <input type="number" th:field="*{quantity}" />
+
+      <label>Price:</label>
+      <input type="number" step="0.01" th:field="*{price}" />
+
+      <label>Image Link:</label>
+      <input type="text" th:field="*{imagelink}" />
+
+      <button type="submit">Update Book</button>
+    </form>
+  </div>
+</main>
+</html>

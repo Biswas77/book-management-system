@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Book</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f1f3f5;
+      display: flex;
+      justify-content: center;
+      padding: 50px;
+    }
+
+    .form-box {
+      background-color: #ffffff;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      width: 500px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2e7d32;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-top: 12px;
+      font-weight: 600;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #388e3c;
+    }
+
+    .btn-back {
+      margin-top: 10px;
+      background-color: #607d8b;
+    }
+
+    .btn-back:hover {
+      background-color: #455a64;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-box">
+    <h1>Add New Book</h1>
+
+    <form th:action="@{/saveBook}" th:object="${book}" method="post">
+      <label>Title:</label>
+      <input type="text" th:field="*{title}" required />
+
+      <label>Author:</label>
+      <input type="text" th:field="*{author}" required />
+
+      <label>Genre:</label>
+      <input type="text" th:field="*{genre}" />
+
+      <label>Date:</label>
+      <input type="date" th:field="*{date}" />
+
+      <label>Publisher:</label>
+      <input type="text" th:field="*{publisher}" />
+
+      <label>Quantity:</label>
+      <input type="number" th:field="*{quantity}" min="0" />
+
+      <label>Price:</label>
+      <input type="number" step="0.01" th:field="*{price}" min="0" />
+
+      <label>Image Link:</label>
+      <input type="text" th:field="*{imagelink}" />
+
+      <label>User:</label>
+      <select th:field="*{user}">
+        <option th:each="u : ${userlist}" th:value="${u.id}" th:text="${u.username}"></option>
+      </select>
+
+      <button type="submit">Add Book</button>
+    </form>
+
+    <a th:href="@{/}">
+      <button class="btn-back">Back</button>
+    </a>
+  </div>
+</body>
+</html>
